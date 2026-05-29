@@ -4,13 +4,12 @@ namespace Mydnic\Kustomer\Test;
 
 use Mydnic\Kustomer\Feedback;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Orchestra\Testbench\Http\Middleware\VerifyCsrfToken;
 use Mydnic\Kustomer\Events\NewFeedback;
+use PHPUnit\Framework\Attributes\Test;
 
 class PostFeedbackTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_saves_the_feedback()
     {
         Event::fake();
@@ -35,7 +34,7 @@ class PostFeedbackTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function it_saves_the_feedback_with_screenshot()
     {
         $this->app->get('config')->set('kustomer.screenshot', true);
@@ -50,7 +49,7 @@ class PostFeedbackTest extends TestCase
         $this->assertNotNull($feedback->user_info['screenshot']);
     }
 
-    /** @test */
+    #[Test]
     public function it_refuses_unavailable_types()
     {
         $this->post('/kustomer-api/feedback', [
