@@ -126,7 +126,7 @@ return [
     |
     */
 
-    'model' => \Mydnic\Kustomer\Models\Feedback::class,
+    'model' => \Mydnic\Kustomer\Feedback::class,
 
     /*
     |--------------------------------------------------------------------------

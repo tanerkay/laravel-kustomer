@@ -9,7 +9,7 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -21,7 +21,7 @@ abstract class TestCase extends Orchestra
         return [KustomerServiceProvider::class];
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $config = $app->get('config');
         $config->set('logging.default', 'errorlog');
@@ -31,12 +31,9 @@ abstract class TestCase extends Orchestra
             'database' => ':memory:',
             'prefix' => '',
         ]);
-        $app->when(DatabaseEntriesRepository::class)
-            ->needs('$connection')
-            ->give('testbench');
     }
 
-    protected function setUpDatabase()
+    protected function setUpDatabase(): void
     {
         Schema::dropIfExists('feedbacks');
 
